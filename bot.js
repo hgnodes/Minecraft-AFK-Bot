@@ -12,21 +12,26 @@ const bot = mineflayer.createBot({
 
 let movementPhase = 0;
 const STEP_INTERVAL = 1500;
+const STEP_SPEED = 1;
 const JUMP_DURATION = 500;
 
 bot.on('spawn', () => {
 
-  // Auto Register & Login
+  // Auto register
   setTimeout(() => {
-    bot.chat(`/register ${config.password} ${config.password}`);
-    bot.chat(`/login ${config.password}`);
-    console.log("🔑 Register/Login command sent");
-  }, 4000);
+    bot.chat('/register Spiderzz@4928@312OP1230@StaffSpider32 Spiderzz@4928@312OP1230@StaffSpider32');
+  }, 3000);
 
+  // Auto login
+  setTimeout(() => {
+    bot.chat('/login Spiderzz@4928@312OP1230@StaffSpider32');
+  }, 6000);
+
+  // Sneak + ready message
   setTimeout(() => {
     bot.setControlState('sneak', true);
     console.log(`✅ ${config.botUsername} is Ready!`);
-  }, 3000);
+  }, 8000);
 
   setTimeout(movementCycle, STEP_INTERVAL);
 });
@@ -40,13 +45,11 @@ function movementCycle() {
       bot.setControlState('back', false);
       bot.setControlState('jump', false);
       break;
-
     case 1:
       bot.setControlState('forward', false);
       bot.setControlState('back', true);
       bot.setControlState('jump', false);
       break;
-
     case 2:
       bot.setControlState('forward', false);
       bot.setControlState('back', false);
@@ -55,12 +58,11 @@ function movementCycle() {
         bot.setControlState('jump', false);
       }, JUMP_DURATION);
       break;
-
     case 3:
       bot.setControlState('forward', false);
       bot.setControlState('back', false);
       bot.setControlState('jump', false);
-      console.log('⏳ Waiting...');
+      console.log('– Waiting phase');
       break;
   }
 
@@ -73,6 +75,5 @@ bot.on('error', (err) => {
 });
 
 bot.on('end', () => {
-  console.log('⛔ Bot Disconnected! Reconnecting...');
-  setTimeout(() => process.exit(1), 5000);
+  console.log('⛔️ Bot Disconnected!');
 });
